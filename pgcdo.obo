@@ -19,18 +19,21 @@ def: the totality of the genome or a portion of it, defined by a criterion
 [Term]
 id: R0002
 name: whole_genome
+namespace: genomic_region_type
 def: the totality of the genome []
 is_a: R0001 ! genomic_region
 
 [Term]
 id: R0003
 name: specific_molecule_region
+namespace: genomic_region_type
 def: a molecule, component of a genome, identified by its name []
 is_a: R0001 ! genomic_region
 
 [Term]
 id: R0004
 name: molecule_type_region
+namespace: genomic_region_type
 def: the regions of a genome corresponding to the molecules of a given type
      (e.g. chromosome, plasmid) []
 is_a: R0001 ! genomic_region
@@ -38,6 +41,7 @@ is_a: R0001 ! genomic_region
 [Term]
 id: R0005
 name: sequence_composition_region
+namespace: genomic_region_type
 def: named regions of a genome defined by their sequence composition which
      differs to that of neighbouring regions (e.g. a genomic island) []
 is_a: R0001 ! genomic_region
@@ -45,6 +49,7 @@ is_a: R0001 ! genomic_region
 [Term]
 id: R0006
 name: functional_genomic_region
+namespace: genomic_region_type
 def: region of a genome, containing or in proximity to an element with a given
      function []
 is_a: R0001 ! genomic_region
@@ -57,12 +62,14 @@ def: the modality of consideration of a variable in a genome []
 [Term]
 id: M0002
 name: absolute_count
+namespace: measurement_mode
 def: the number of instances of a genomic content unit in a genome []
 is_a: M0001 ! measurement_mode
 
 [Term]
 id: M0003
 name: relative_frequency
+namespace: measurement_mode
 def: the number of instances of a genomic content unit U in a genome
      divided by a reference value, consisting of the number of instances
      of a group of genomic content units, to which U belongs []
@@ -71,23 +78,54 @@ is_a: M0001 ! measurement_mode
 [Term]
 id: M0004
 name: presence
+namespace: measurement_mode
 def: a boolean value, indicating if at least an instance of a genomic
      content unit is observed or predicted []
 is_a: M0001 ! measurement_mode
 
 [Term]
 id: M0005
-name: total_sequence_length
-def: the total length of the sequence, which belong to a given
+name: sequence_based_measurement_mode
+def: a measurement mode which considers the sequence of an annotation
      genomic content unit []
 is_a: M0001 ! measurement_mode
 
 [Term]
 id: M0006
+name: total_sequence_length
+namespace: measurement_mode
+def: the total length of the sequence, which belong to a given
+     genomic content unit []
+is_a: M0005 ! sequence_based_measurement_mode
+
+[Term]
+id: M0007
 name: average_sequence_length
+namespace: measurement_mode
 def: the average length of the composing sequences, which belong to a given
      genomic content unit, composed of different elements []
+is_a: M0005 ! sequence_based_measurement_mode
+
+[Term]
+id: M0008
+name: subunits_based_measurement_mode
+def: a measurement mode which involves the count of subunits of
+     a genomic content unit []
 is_a: M0001 ! measurement_mode
+
+[Term]
+id: M0009
+name: total_subunits_count
+namespace: measurement_mode
+def: the total number of subunits in one or multiple genomic content units []
+is_a: M0008 ! subunits_based_measurement_mode
+
+[Term]
+id: M0010
+name: average_subunits_count
+namespace: measurement_mode
+def: the average number of subunits in multiple genomic content units []
+is_a: M0008 ! subunits_based_measurement_mode
 
 [Term]
 id: U0001
