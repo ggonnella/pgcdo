@@ -1,355 +1,249 @@
 format-version: 1.2
 
-[Typedef]
-id: has_external_link_to
-name: has external link to
-def: an instance of the term must contain a link to an external
-     resource of the specified type []
+[Term]
+id: A0001
+name: genomic_attribute
+def: a variable which can be computed, measured or observed in a whole genome
+     or part of it []
+has_a: U0001 ! genomic_content_unit
+has_a: R0001 ! genomic_region
+has_a: M0001 ! measurement_mode
 
-[Typedef]
-id: usually_has_external_link_to
-name: usually has external link to
-def: an instance of the term should contain a link to an external
-     resource of the specified type []
-comment: used when links of that type are generally available
+[Term]
+id: R0001
+name: genomic_region
+def: the totality of the genome or a portion of it, defined by a criterion
+     which allows to distinguish it from the portions which do not belong
+     to it []
 
-[Typedef]
-id: ideally_has_external_link_to
-name: ideally has external link to
-def: ideally, an instance of the term contains a link to an external
-     resource of the specified type []
-comment: used when links of that type are generally not available
+[Term]
+id: R0002
+name: specific_molecule_region
+def: a molecule, component of a genome, identified by its name []
+is_a: R0001 ! genomic_region
 
-[Typedef]
-id: has_optional_type
-name: has optional type
-def: instances of the subject term can be classified as of type O, where
-     O is an instance of the object term, but this classication system
-     does not apply in all cases
+[Term]
+id: R0003
+name: molecule_type_region
+def: the regions of a genome corresponding to the molecules of a given type
+     (e.g. chromosome, plasmid) []
+is_a: R0001 ! genomic_region
 
-[Typedef]
-id: defined_by
-name: defined by
-def: instances of the subject term are defined by the mean
-     of instances of the object term []
+[Term]
+id: R0004
+name: sequence_composition_region
+def: named regions of a genome defined by their sequence composition which
+     differs to that of neighbouring regions (e.g. a genomic island) []
+is_a: R0001 ! genomic_region
+
+[Term]
+id: R0005
+name: functional_genomic_region
+def: region of a genome, containing or in proximity to an element with a given
+     function []
+is_a: R0001 ! genomic_region
 
 [Term]
 id: M0001
-name: logical_expression
-namespace: metadata
-def: an expression involving one or muliple terms, the set operators
-     for intersection (and), union (or), and inversion (not) []
-
-[Term]
-id: M0010
-name: groups_logical_expression
-namespace: metadata
-def: a logical expression whose terms are groups of organisms []
-comment: avoiding nested group combinations can simplify applications
-is_a: M0001 ! logical_expression
+name: measurement_mode
+def: the modality of consideration of a variable in a genome []
 
 [Term]
 id: M0002
-name: groups_combination_expression
-namespace: metadata
-def: a combination of multiple organism groups, expressed in terms
-     or a logical expression, combining two or more other groups []
-is_a: M0010 ! groups_logical_expression
-
-[Term]
-id: M0011
-name: group_inversion_expression
-namespace: metadata
-def: a group logical expression, containing only the negation symbol
-     and a single term (group) []
-is_a: M0010 ! groups_logical_expression
+name: absolute_count
+def: the number of instances of a genomic content unit in a genome []
+is_a: M0001 ! measurement_mode
 
 [Term]
 id: M0003
-name: external_resource
-namespace: metadata
-def: a source of definitions or information which is maintained
-     and made available by third-parties []
-comment: only publicly available resources should be used
+name: relative_frequency
+def: the number of instances of a genomic content unit U in a genome
+     divided by a reference value, consisting of the number of instances
+     of a group of genomic content units, to which U belongs []
+is_a: M0001 ! measurement_mode
 
 [Term]
 id: M0004
-name: external_definition
-namespace: metadata
-def: a definition given in a document or database mantained and
-     made available by third-parties []
-is_a: M0003 ! external_resource
+name: presence
+def: a boolean value, indicating if at least an instance of a genomic
+     content unit is observed or predicted []
+is_a: M0001 ! measurement_mode
 
 [Term]
 id: M0005
-name: external_enumeration
-namespace: metadata
-def: a list of members of a class, given in a document
-     or database, maintained and made available by third-parties []
-is_a: M0003 ! external_resource
+name: total_sequence_length
+def: the total length of the sequence, which belong to a given
+     genomic content unit []
+is_a: M0001 ! measurement_mode
 
 [Term]
 id: M0006
-name: taxonomy_database
-namespace: metadata
-def: a database, which contain definitions of group of organisms
-     by their biological taxonomic classification []
-is_a: M0003 ! external_resource
+name: average_sequence_length
+def: the average length of the composing sequences, which belong to a given
+     genomic content unit, composed of different elements []
+is_a: M0001 ! measurement_mode
 
 [Term]
-id: M0007
-name: strains_database
-namespace: metadata
-def: a database, containing the names of strains, their availability
-     in strain collections and other relevant information []
-is_a: M0003 ! external_resource
+id: U0001
+name: genomic_content_unit
+def: an object of measurement, computation or observation in the genome,
+     such as a genetic molecule or part of its sequence,
+     or a functional or structural region of it, as defined by
+     the sequence annotation []
 
 [Term]
-id: M0008
-name: NCBI_taxonomy_database
-namespace: metadata
-def: the taxonomy database maintained by NCBI []
-is_a: M0006 ! taxonomy_database
+id: U0002
+name: sequence_genomic_content_unit
+namespace: genetic_content_type_category
+def: a genomic content unit whose definition is based only on the sequence of
+     the genomic biomolecules (and not on their annotation) []
+is_a: U0001 ! genomic_content_unit
 
 [Term]
-id: M0009
-name: taxonomic_rank
-namespace: metadata
-def: name of one of the hierarchical levels of a taxonomic classification
-comment: example: species, genus, family;
-         not all taxonomic group have a specific rank
+id: U0003
+name: annotation_genomic_content_unit
+namespace: genetic_content_type_category
+def: a genomic content unit whose definition is based on the annotation of
+     the sequence of the genomic biomolecules []
+is_a: U0001 ! genomic_content_unit
 
 [Term]
-id: GC0001
-name: group_types_category
-namespace: hierarchy_root
-def: higher level definition, which includes one or multiple types of groups
-     or biological organisms []
+id: U0004
+name: nucleic_acid_base
+namespace: genetic_content_type
+def: a genomic content unit consisting of a single base of the nucleic
+     acid of the genome (e.g. any base, a specific base, one of a group
+    of bases) []
+is_a: U0002 ! sequence_genomic_content_unit
 
 [Term]
-id: GC0002
-name: habitat_requirement_type
-namespace: group_types_category
-def: organisms classification by required conditions in their habitats []
-is_a: GC0001 ! group_types_category
+id: U0005
+name: kmer
+namespace: genetic_content_type
+def: a sequence consisting of k adiacent nucleic acid bases
+is_a: U0002 ! sequence_genomic_content_unit
 
 [Term]
-id: GC0003
-name: phenotype_group_type
-namespace: group_types_category
-def: groups of organisms by one particular aspect of their phenotype []
-comment: this does not include groups by characteristics of the habitat such
-         as temperature, salinity, pH, etc, which are included instead
-         in habitat_requirement_type (GC0002)
-is_a: GC0001 ! group_types_category
+id: U0006
+name: genomic_molecule
+namespace: genetic_content_type
+def: one of the molecules of which the genome is composed []
+is_a: U0002 ! sequence_genomic_content_unit
 
 [Term]
-id: GC0004
-name: location_group_type
-namespace: group_types_category
-def: groups of organisms by the location where their live []
-is_a: GC0001 ! group_types_category
+id: U0007
+name: sequence_similarity_region
+namespace: genetic_content_type
+def: a region of the sequence similar to a given pattern []
+is_a: U0002 ! sequence_genomic_content_unit
 
 [Term]
-id: GC0005
-name: derived_group_type
-namespace: group_types_category
-def: definition of groups of organisms derived by the definition of one or
-     multiple other groups []
-is_a: GC0001 ! group_types_category
+id: U0008
+name: sequence_identity_region
+namespace: genetic_content_type
+def: a region of the sequence identical to a given sequence []
+is_a: U0007 ! sequence_similarity_region
 
 [Term]
-id: GC0006
-name: phylogenetic_group_type
-namespace: group_types_category
-def: groups of organisms by a currently or historically inferred
-     phylogenetic relationship []
-is_a: GC0001 ! group_types_category
+id: U0009
+name: feature
+namespace: genetic_content_type_category
+def: a region of a genome with a definite structure and/or function []
+is_a: U0003 ! annotation_genomic_content_unit
 
 [Term]
-id: GG0001
-name: taxonomic
-namespace: group_type
-def: organisms belonging to a group with common phylogenetic origin,
-     as defined by an official taxonomy organisation or by
-     a commonly used taxonomy database []
-comment: ideally represents a monophiletic group or organisms,
-     a clade
-relationship: has_external_link_to M0006 {cardinality:1} ! taxonomy_database
-              ! recommended: M0008 ! NCBI_taxonomy_database
-relationship: has_optional_type M0009 ! taxonomic_rank
-is_a: GC0006 ! phylogenetic_group_type
+id: U0010
+name: feature_group
+namespace: genetic_content_type_category
+def: a group of features, defined by one shared aspect,
+     all equivalent when considering that aspect []
+is_a: U0003 ! annotation_genomic_content_unit
 
 [Term]
-id: GG0002
-name: strain
-namespace: group_type
-def: prokaryotic organisms which were cultivated in a biological laboratory
-     starting from a common ancestor []
-comment: may be assigned or not to a specific taxonomic group; it should
-         be linked to NCBI taxonomy, if the strain itself is included there; to
-         the species, if the strain is assigned to a species, but not included
-         in NCBI taxonomy; to the genus, if the strain is not included in NCBI
-         taxonomy and not assigned to a species, but assigned to a genus
-relationship: usually_has_external_link_to M0008 ! NCBI_taxonomy_database
-relationship: usually_has_external_link_to M0007 ! strains_database
-is_a: GC0006 ! phylogenetic_group_type
+id: U0011
+name: feature_type_group
+namespace: genetic_content_type
+def: a group of features, belonging to the same feature type,
+     as defined by the sequence ontology []
+is_a: U0010 ! feature_group
 
 [Term]
-id: GG0004
-name: microbiome
-namespace: group_type
-def: organism known only because its genome was assembled from a metagenome
-comment: may be assigned or not to a specific taxonomic group; it should
-         be linked to NCBI taxonomy, if the strain itself is included there; to
-         the species, if the strain is assigned to a species, but not included
-         in NCBI taxonomy; to the genus, if the strain is not included in NCBI
-         taxonomy and not assigned to a species, but assigned to a genus
-relationship: usually_has_external_link_to M0008 ! NCBI_taxonomy_database
-relationship: usually_has_external_link_to M0007 ! strains_database
-is_a: GC0006 ! location
+id: U0012
+name: protein_domain_group
+namespace: genetic_content_type
+def: a group of protein-coding genes, whose products contain
+     a defined functional or structural region []
+is_a: U0010 ! feature_group
 
 [Term]
-id: GG0003
-name: paraphyletic
-namespace: group_type
-def: named group of strains or species or other taxa, which which do not
-     represent a monophyetic group []
-comment: usually historically a taxonomic group,
-        but not recognized anymore as such
-relationship: usually_has_external_link_to M0004 ! external_definition
-relationship: ideally_has_external_link_to M0005 ! external_enumeration
-is_a: GC0006 ! phylogenetic_group_type
+id: U0013
+name: enzymatic_activity_group
+namespace: genetic_content_type
+def: a group of protein-coding or RNA genes, whose products have
+     a defined catalitic activity []
+is_a: U0010 ! feature_group
 
 [Term]
-id: GL0001
-name: geographical
-namespace: group_type
-def: organisms living in a specific named geographical area,
-     of any kind and size []
-relationship: usually_has_external_link_to M0004 ! external_definition
-relationship: ideally_has_external_link_to M0005 ! external_enumeration
-is_a: GC0004 ! location_group_type
+id: U0014
+name: orthology_group
+namespace: genetic_content_type
+def: a group of protein-coding genes, whose products are
+     ortholog proteins []
+is_a: U0010 ! feature_group
 
 [Term]
-id: GL0002
-name: habitat
-namespace: group_type
-def: organisms living in a specific kind of environment []
-relationship: usually_has_external_link_to M0004 ! external_definition
-relationship: ideally_has_external_link_to M0005 ! external_enumeration
-is_a: GC0004 ! location_group_type
+id: U0015
+name: functional_category_group
+namespace: genetic_content_type
+def: a group of protein-coding genes, whose products all have
+     a function in a given category []
+is_a: U0010 ! feature_group
 
 [Term]
-id: GH0001
-name: nutrients_level_requirement
-namespace: group_type
-def: organisms which require a given quantitive level of availability of
-     nutrients []
-comment: e.g. oligotrophic, copiotrophic
-is_a: GC0002 ! habitat_requirement_type
+id: U0016
+name: protein_family_group
+namespace: genetic_content_type
+def: a group of protein-coding genes, which are summarized in the
+     same family, defined by their function and/or sequence similarity []
+is_a: U0010 ! feature_group
 
 [Term]
-id: GH0002
-name: specific_nutrient_availability
-namespace: group_type
-def: organisms by their requirement of availability of a specific nutrient []
-is_a: GC0002 ! habitat_requirement_type
+id: U0017
+name: feature_set
+namespace: genetic_content_type_category
+def: a collection of features consisting of multiple components,
+     with an own structure or function in the context of the common
+     collection-defining structure or function []
+is_a: U0003 ! annotation_genomic_content_unit
 
 [Term]
-id: GH0003
-name: O2_requirement
-namespace: group_type
-def: organisms by requirement of molecular oxygen level in their habitat []
-is_a: GC0002 ! habitat_requirement_type
+id: U0018
+name: metabolic_pathway_group
+namespace: genetic_content_type
+def: a set of genes for enzymes which contribute to a given
+     metabolic pathway []
+is_a: U0017 ! feature_set
 
 [Term]
-id: GH0004
-name: salinity_requirement
-namespace: group_type
-def: organisms by requirement of a salinity level in their habitats []
-is_a: GC0002 ! habitat_requirement_type
+id: U0019
+name: feature_series
+namespace: genetic_content_type_category
+def: a collection of features constisting of multiple components,
+     each with an own structure or function,
+     in a given arrangement or respecting given
+     proximity constraints []
+is_a: U0003 ! annotation_genomic_content_unit
 
 [Term]
-id: GH0005
-name: pH_requirement
-namespace: group_type
-def: organisms by requirement of a pH range in their habitats []
-is_a: GC0002 ! habitat_requirement_type
+id: U0020
+name: gene_cluster
+name: protein_family_group
+def: a collection of genes in proximity to each other, with a given
+     function []
+is_a: U0019 ! feature_series
 
 [Term]
-id: GH0006
-name: temperature_requirement
-namespace: group_type
-def: organisms by requirement of a temperature range in their habitats []
-is_a: GC0002 ! habitat_requirement_type
-
-[Term]
-id: GP0001
-name: biological_interaction
-namespace: group_type
-def: organisms by kind of interaction (or lack thereof) with other organisms []
-is_a: GC0003 ! phenotype_group_type
-
-[Term]
-id: GP0002
-name: taxis
-namespace: group_type
-def: organisms by their tendency to move or orient towards or against
-     a given stimulus []
-is_a: GC0003 ! phenotype_group_type
-
-[Term]
-id: GP0003
-name: metabolic
-namespace: group_type
-def: organisms sharing a specific trait of their metabolism []
-is_a: GC0003 ! phenotype_group_type
-
-[Term]
-id: GP0004
-name: gram_stain
-namespace: group_type
-def: organisms according to their reactivity to Gram stain []
-is_a: GC0003 ! phenotype_group_type
-
-[Term]
-id: GP0005
-name: trophic_strategy
-namespace: group_type
-def: organisms which share the same strategy for obtaining energy and/or
-     organic compounds []
-is_a: GC0003 ! phenotype_group_type
-
-[Term]
-id: GP0006
-name: cultiviability
-namespace: group_type
-def: organisms by the ability to cultivate them in a laboratory []
-is_a: GC0003 ! phenotype_group_type
-
-[Term]
-id: GP0007
-name: resultive_disease_symptom
-namespace: group_type
-def: patogenic organisms by the kind of disease or symptom that they
-     cause (or lack thereof) []
-is_a: GC0003 ! phenotype_group_type
-
-[Term]
-id: GX0001
-name: combined_group
-namespace: group_type
-def: organisms which share or lack a number of conditions, which are described
-     in other terms, and hereby combined by the set operations union and
-     intersection []
-is_a: GC0005 ! derived_group_type
-relationship: defined_by M0002 ! groups_combination_expression
-
-[Term]
-id: GX0002
-name: inverted_group
-namespace: group_type
-def: organisms which is not an instance of a specified group []
-is_a: GC0005 ! derived_group_type
-relationship: defined_by M0011 ! group_inversion_expression
+id: U0021
+name: feature_arrangement
+def: a collection of features, defined by their relative position []
+is_a: U0019 ! feature_series
