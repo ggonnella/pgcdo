@@ -18,26 +18,32 @@ def: the totality of the genome or a portion of it, defined by a criterion
 
 [Term]
 id: R0002
+name: whole_genome
+def: the totality of the genome []
+is_a: R0001 ! genomic_region
+
+[Term]
+id: R0003
 name: specific_molecule_region
 def: a molecule, component of a genome, identified by its name []
 is_a: R0001 ! genomic_region
 
 [Term]
-id: R0003
+id: R0004
 name: molecule_type_region
 def: the regions of a genome corresponding to the molecules of a given type
      (e.g. chromosome, plasmid) []
 is_a: R0001 ! genomic_region
 
 [Term]
-id: R0004
+id: R0005
 name: sequence_composition_region
 def: named regions of a genome defined by their sequence composition which
      differs to that of neighbouring regions (e.g. a genomic island) []
 is_a: R0001 ! genomic_region
 
 [Term]
-id: R0005
+id: R0006
 name: functional_genomic_region
 def: region of a genome, containing or in proximity to an element with a given
      function []
