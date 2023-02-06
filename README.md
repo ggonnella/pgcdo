@@ -8,12 +8,12 @@ Enabling the description and verification of such expectations requires to
 define exactly the genomic contents.
 The Prokaryotic Genomic Contents Definition Ontology is a framework which
 enables such definitions.
-In particular, it defines \textit{genomic attributes} as measurable/observable
+In particular, it defines _genomic attributes_ as measurable/observable
 quantities in a genome. Thereby, it
 differentiates the object of a measurement (called here
-\textit{genomic content unit} and other variables of the required
-measurement itself (such as the \textit{measurement mode} and \textit{measurement
-region}).
+_genomic content unit_ and other variables of the required
+measurement itself (such as the _measurement mode_ and _measurement
+region_).
 
 ## Ontology files
 
