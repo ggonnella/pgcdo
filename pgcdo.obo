@@ -1,293 +1,444 @@
 format-version: 1.2
 
 [Term]
-id: A0001
-name: genomic_attribute
-def: a variable which can be computed, measured or observed in a whole genome
-     or part of it []
-has_a: U0001 ! genomic_content_unit
-has_a: R0001 ! genomic_region
-has_a: M0001 ! measurement_mode
+id: A00000
+name: genomic attribute
+namespace: root
+def: "a variable which can be computed, measured or observed in a whole genome
+     or part of it" []
 
 [Term]
-id: R0001
-name: genomic_region
-def: the totality of the genome or a portion of it, defined by a criterion
+id: R00000
+name: genomic region
+namespace: root
+def: "the totality of the genome or a portion of it, defined by a criterion
      which allows to distinguish it from the portions which do not belong
-     to it []
+     to it" []
 
 [Term]
-id: R0002
-name: whole_genome
+id: R10000
+name: whole genome
 namespace: genomic_region_type
-def: the totality of the genome []
-is_a: R0001 ! genomic_region
+def: "the totality of the genome" []
+is_a: R00000 ! genomic region
 
 [Term]
-id: R0003
-name: specific_molecule_region
+id: R20000
+name: specific molecule region
 namespace: genomic_region_type
-def: a molecule, component of a genome, identified by its name []
-is_a: R0001 ! genomic_region
+def: "a molecule, component of a genome, identified by its name" []
+is_a: R00000 ! genomic region
 
 [Term]
-id: R0004
-name: molecule_type_region
+id: R30000
+name: molecule type region
 namespace: genomic_region_type
-def: the regions of a genome corresponding to the molecules of a given type
-     (e.g. chromosome, plasmid) []
-is_a: R0001 ! genomic_region
+def: "the regions of a genome corresponding to the molecules of a given type
+     (e.g. chromosome, plasmid)" []
+is_a: R00000 ! genomic region
 
 [Term]
-id: R0005
-name: sequence_composition_region
+id: R40000
+name: sequence composition region
 namespace: genomic_region_type
-def: named regions of a genome defined by their sequence composition which
-     differs to that of neighbouring regions (e.g. a genomic island) []
-is_a: R0001 ! genomic_region
+def: "named regions of a genome defined by their sequence composition which
+     differs to that of neighbouring regions (e.g. a genomic island)" []
+is_a: R00000 ! genomic region
 
 [Term]
-id: R0006
-name: functional_genomic_region
+id: R50000
+name: functional genomic region
 namespace: genomic_region_type
-def: region of a genome, containing or in proximity to an element with a given
-     function []
-is_a: R0001 ! genomic_region
+def: "region of a genome, containing or in proximity to an element with a given
+     function" []
+is_a: R00000 ! genomic region
 
 [Term]
-id: M0001
+id: M00000
+namespace: root
 name: measurement_mode
-def: the modality of consideration of a variable in a genome []
+def: "the modality of consideration of a variable in a genome" []
 
 [Term]
-id: M0002
-name: absolute_count
-namespace: measurement_mode
-def: the number of instances of a genomic content unit in a genome []
-is_a: M0001 ! measurement_mode
-
-[Term]
-id: M0003
-name: relative_frequency
-namespace: measurement_mode
-def: the number of instances of a genomic content unit U in a genome
-     divided by a reference value, consisting of the number of instances
-     of a group of genomic content units, to which U belongs []
-is_a: M0001 ! measurement_mode
-
-[Term]
-id: M0004
+id: M00010
 name: presence
 namespace: measurement_mode
-def: a boolean value, indicating if at least an instance of a genomic
-     content unit is observed or predicted []
-is_a: M0001 ! measurement_mode
+def: "a boolean value, indicating if at least an instance of a genomic
+     content unit is observed or predicted" []
+is_a: M00000 ! measurement_mode
 
 [Term]
-id: M0005
-name: sequence_based_measurement_mode
-def: a measurement mode which considers the sequence of an annotation
-     genomic content unit []
-is_a: M0001 ! measurement_mode
-
-[Term]
-id: M0006
-name: total_sequence_length
+id: M00020
+name: absolute count
+property_value: EGC_label count
 namespace: measurement_mode
-def: the total length of the sequence, which belong to a given
-     genomic content unit []
-is_a: M0005 ! sequence_based_measurement_mode
+def: "the number of instances of a genome content unit in a genome" []
+is_a: M00000 ! measurement_mode
 
 [Term]
-id: M0007
-name: average_sequence_length
+id: M00021
+name: relative count
 namespace: measurement_mode
-def: the average length of the composing sequences, which belong to a given
-     genomic content unit, composed of different elements []
-is_a: M0005 ! sequence_based_measurement_mode
+property_value: EGC_label count_relative
+def: "the number of instances of a genome content unit U in a genome
+     divided by the number of instances
+     of a specified reference genome content unit" []
+is_a: M00000 ! measurement_mode
 
 [Term]
-id: M0008
-name: subunits_based_measurement_mode
-def: a measurement mode which involves the count of subunits of
-     a genomic content unit []
-is_a: M0001 ! measurement_mode
-
-[Term]
-id: M0009
-name: total_subunits_count
+id: M00030
+name: conservation
 namespace: measurement_mode
-def: the total number of subunits in one or multiple genomic content units []
-is_a: M0008 ! subunits_based_measurement_mode
+property_value: EGC_label conservation
+def: "a boolean value, indicating if the instances of a genomic
+     content unit are conserved in the considered group, according
+     to some conservation assessement criterion" []
+is_a: M00000 ! measurement_mode
 
 [Term]
-id: M0010
-name: average_subunits_count
+id: M00100
+name: sequence-based measurement mode
+def: "a measurement mode which considers the sequence of an annotation
+     genome content unit" []
+is_a: M00000 ! measurement_mode
+
+[Term]
+id: M00110
+name: total sequence length
+property_value: EGC_label length
 namespace: measurement_mode
-def: the average number of subunits in multiple genomic content units []
-is_a: M0008 ! subunits_based_measurement_mode
+def: "the total sequence length of the instances of a genome content unit" []
+is_a: M00100 ! sequence-based measurement mode
 
 [Term]
-id: U0001
-name: genomic_content_unit
-def: an object of measurement, computation or observation in the genome,
+id: M00111
+name: relative sequence length
+property_value: EGC_label length_relative
+namespace: measurement_mode
+def: "the total sequence length of the instances of a genome content unit,
+     divided by the total sequence length of instances
+     of a specified reference genome content unit" []
+is_a: M00100 ! sequence-based measurement mode
+
+[Term]
+id: M00120
+name: average sequence length
+property_value: EGC_label average_length
+namespace: measurement_mode
+def: "the average sequence length of the instances of a genome content unit" []
+is_a: M00100 ! sequence-based measurement mode
+
+[Term]
+id: M10000
+name: set members measurement mode
+def: "a measurement mode which concerns single members of
+     a set genome content unit" []
+is_a: M00000 ! measurement mode
+
+[Term]
+id: M10010
+name: subunits presence
+property_value: EGC_label members_presence
+namespace: measurement_mode
+def: "presence of any member of a set genome content unit" []
+is_a: M10000 ! set members measurement mode
+
+[Term]
+id: M10020
+name: subunits count
+property_value: EGC_label members_count
+namespace: measurement_mode
+def: "the total number of instances of members of a set genome content unit" []
+is_a: M10000 ! set members measurement mode
+
+[Term]
+id: M10110
+name: subunits total sequence length
+property_value: EGC_label members_length
+namespace: measurement_mode
+def: "the total sequence length
+     of instances of members of a set genome content unit" []
+is_a: M10000 ! set members measurement mode
+is_a: M00100 ! sequence-based measurement mode
+
+[Term]
+id: M20000
+name: complete set measurement mode
+def: "a measurement mode which concerns the entirety of
+     a set genome content unit" []
+is_a: M00000 ! measurement mode
+
+[Term]
+id: M20010
+name: complete set presence
+property_value: EGC_label complete_presence
+namespace: measurement_mode
+def: "presence of all members of a set genome content unit" []
+is_a: M20000 ! complete set measurement mode
+
+[Term]
+id: M20020
+name: complete set count
+property_value: EGC_label complete_count
+namespace: measurement_mode
+def: "count of the complete instances of a set genome content unit" []
+is_a: M20000 ! complete set measurement mode
+
+[Term]
+id: U00000
+namespace: root
+name: genome content unit
+def: "an object of measurement, computation or observation in the genome,
      such as a genetic molecule or part of its sequence,
      or a functional or structural region of it, as defined by
-     the sequence annotation []
+     the sequence annotation" []
 
 [Term]
-id: U0002
-name: sequence_genomic_content_unit
-namespace: genetic_content_type_category
-def: a genomic content unit whose definition is based only on the sequence of
-     the genomic biomolecules (and not on their annotation) []
-is_a: U0001 ! genomic_content_unit
+id: U10000
+name: sequence genome content unit
+namespace: genome_content_unit_category
+def: "a genome content unit whose definition is based only on the sequence of
+     the genomic biomolecules (and not on their annotation)" []
+is_a: U00000 ! genome content unit
 
 [Term]
-id: U0003
-name: annotation_genomic_content_unit
-namespace: genetic_content_type_category
-def: a genomic content unit whose definition is based on the annotation of
-     the sequence of the genomic biomolecules []
-is_a: U0001 ! genomic_content_unit
-
-[Term]
-id: U0004
-name: nucleic_acid_base
-namespace: genetic_content_type
-def: a genomic content unit consisting of a single base of the nucleic
+id: U10001
+name: nucleic acid base
+property_value: EGC_label base
+namespace: genome_content_unit_type
+def: "a genome content unit consisting of a single base of the nucleic
      acid of the genome (e.g. any base, a specific base, one of a group
-    of bases) []
-is_a: U0002 ! sequence_genomic_content_unit
+    of bases)" []
+is_a: U10000 ! sequence genome content unit
 
 [Term]
-id: U0005
+id: U10002
 name: kmer
-namespace: genetic_content_type
-def: a sequence consisting of k adiacent nucleic acid bases
-is_a: U0002 ! sequence_genomic_content_unit
+namespace: possible_genome_content_unit_type
+def: "a sequence consisting of k adiacent nucleic acid bases" []
+is_a: U10000 ! sequence genome content unit
 
 [Term]
-id: U0006
-name: genomic_molecule
-namespace: genetic_content_type
-def: one of the molecules of which the genome is composed []
-is_a: U0002 ! sequence_genomic_content_unit
+id: U10003
+name: sequence similarity region
+namespace: possible_genome_content_unit_type
+def: "a region of the sequence similar to a given pattern" []
+is_a: U10000 ! sequence genome content unit
 
 [Term]
-id: U0007
-name: sequence_similarity_region
-namespace: genetic_content_type
-def: a region of the sequence similar to a given pattern []
-is_a: U0002 ! sequence_genomic_content_unit
+id: U10004
+name: sequence identity region
+namespace: possible_genome_content_unit_type
+def: "a region of the sequence identical to a given sequence" []
+is_a: U10003 ! sequence similarity region
 
 [Term]
-id: U0008
-name: sequence_identity_region
-namespace: genetic_content_type
-def: a region of the sequence identical to a given sequence []
-is_a: U0007 ! sequence_similarity_region
+id: U20000
+name: annotation genome content unit
+namespace: genome_content_unit_category
+def: "a genome content unit whose definition is based on the annotation of
+     the sequence of the genomic biomolecules" []
+is_a: U00000 ! genome content unit
 
 [Term]
-id: U0009
-name: feature
-namespace: genetic_content_type_category
-def: a region of a genome with a definite structure and/or function []
-is_a: U0003 ! annotation_genomic_content_unit
+id: U21000
+name: specific feature
+namespace: genome_content_unit_category
+property_value: EGC_label specific_feature
+def: "a specific region of a genome with a definite
+      structure and/or function" []
+is_a: U20000 ! annotation genome content unit
 
 [Term]
-id: U0010
-name: feature_group
-namespace: genetic_content_type_category
-def: a group of features, defined by one shared aspect,
-     all equivalent when considering that aspect []
-is_a: U0003 ! annotation_genomic_content_unit
+id: U21001
+name: specific gene
+property_value: EGC_label specific_gene
+namespace: genome_content_unit_category
+def: "a gene, specified by its name or symbol" []
+is_a: U21000 ! specific feature
 
 [Term]
-id: U0011
-name: feature_type_group
-namespace: genetic_content_type
-def: a group of features, belonging to the same feature type,
-     as defined by the sequence ontology []
-is_a: U0010 ! feature_group
+id: U21002
+name: genes for a specific protein
+property_value: EGC_label specific_protein
+namespace: genome_content_unit_category
+def: "a gene or set of genes for a protein, specified by its name or symbol" []
+is_a: U20000 ! specific feature
 
 [Term]
-id: U0012
-name: protein_domain_group
-namespace: genetic_content_type
-def: a group of protein-coding genes, whose products contain
-     a defined functional or structural region []
-is_a: U0010 ! feature_group
+id: U22000
+name: feature category
+property_value: EGC_prefix ctg
+namespace: genome_content_unit_category
+def: "a group of features, defined by one shared aspect,
+     all equivalent when considering that aspect" []
+is_a: U20000 ! annotation genome content unit
 
 [Term]
-id: U0013
-name: enzymatic_activity_group
-namespace: genetic_content_type
-def: a group of protein-coding or RNA genes, whose products have
-     a defined catalitic activity []
-is_a: U0010 ! feature_group
+id: U22100
+name: functional category
+property_value: EGC_label function
+namespace: genome_content_unit_type
+def: "a category of protein-coding or RNA genes,
+     defined by functional aspects of their products" []
+is_a: U22000 ! feature category
 
 [Term]
-id: U0014
-name: orthology_group
-namespace: genetic_content_type
-def: a group of protein-coding genes, whose products are
-     ortholog proteins []
-is_a: U0010 ! feature_group
+id: U22200
+name: gene category
+namespace: genome_content_unit_category
+def: "a category of genes, defined by some aspects of the genes themselves
+     (in contrast to their products)" []
+is_a: U22000 ! feature category
 
 [Term]
-id: U0015
-name: functional_category_group
-namespace: genetic_content_type
-def: a group of protein-coding genes, whose products all have
-     a function in a given category []
-is_a: U0010 ! feature_group
+id: U22300
+name: protein category
+namespace: genome_content_unit_category
+def: "a category of protein-coding genes,
+     defined by some compositional, structural or phylogenetic
+     aspects of their products" []
+is_a: U22000 ! feature category
 
 [Term]
-id: U0016
-name: protein_family_group
-namespace: genetic_content_type
-def: a group of protein-coding genes, which are summarized in the
-     same family, defined by their function and/or sequence similarity []
-is_a: U0010 ! feature_group
+id: U22400
+name: feature type category
+namespace: genome_content_unit_type
+property_value: EGC_label feature_type
+def: "a group of features of the same type" []
+is_a: U22000 ! feature category
 
 [Term]
-id: U0017
-name: feature_set
-namespace: genetic_content_type_category
-def: a collection of features consisting of multiple components,
+id: U22201
+name: gene homologs
+property_value: EGC_label gene_homologs
+namespace: genome_content_unit_type
+def: "homologs of a given gene" []
+is_a: U22200 ! gene category
+
+[Term]
+id: U22202
+name: ortholog group
+namespace: genome_content_unit_type
+def: "a group of ortholog genes" []
+is_a: U22200 ! gene category
+
+[Term]
+id: U22301
+name: protein homologs
+property_value: EGC_label protein_homologs
+namespace: genome_content_unit_type
+def: "genes coding for homologs of a given protein" []
+is_a: U22300 ! protein category
+
+[Term]
+id: U22302
+name: protein family or domain category
+namespace: genome_content_unit_type
+property_value: EGC_label family_or_domain
+def: "a category of protein-coding genes, whose products are members of
+     a given protein family or group of families
+     or contain a given protein domain" []
+is_a: U22300 ! protein category
+
+[Term]
+id: U22401
+name: enzymatic activity category
+namespace: genome_content_unit_type
+def: "a group of protein-coding or RNA genes, whose products have
+     a defined catalitic activity" []
+is_a: U22100 ! functional category
+
+[Term]
+id: U23000
+name: feature set
+property_value: EGC_prefix set
+namespace: genome_content_unit_category
+def: "a collection of features consisting of multiple components,
      with an own structure or function in the context of the common
-     collection-defining structure or function []
-is_a: U0003 ! annotation_genomic_content_unit
+     collection-defining structure or function" []
+is_a: U20000 ! annotation genome content unit
 
 [Term]
-id: U0018
-name: metabolic_pathway_group
-namespace: genetic_content_type
-def: a set of genes for enzymes which contribute to a given
-     metabolic pathway []
-is_a: U0017 ! feature_set
+id: U23100
+name: functions set
+namespace: genome_content_unit_category
+def: "a set of genes" []
+is_a: U23000 ! feature set
 
 [Term]
-id: U0019
-name: feature_series
-namespace: genetic_content_type_category
-def: a collection of features constisting of multiple components,
+id: U23200
+name: gene set
+namespace: genome_content_unit_category
+def: "a set of genes" []
+is_a: U23000 ! feature set
+
+[Term]
+id: U23201
+name: gene system
+namespace: genome_content_unit_type
+property_value: EGC_label gene_system
+def: "a collection of genes contribuiting to a given function" []
+is_a: U23200 ! gene set
+
+[Term]
+id: U23202
+name: gene cluster
+namespace: genome_content_unit_type
+property_value: EGC_label gene_cluster
+def: "a collection of genes in proximity to each other, with a given
+     function" []
+is_a: U23200 ! gene set
+is_a: U23400 ! positional feature set
+
+[Term]
+id: U23203
+name: operon
+namespace: genome_content_unit_type
+property_value: EGC_label operon
+def: "a collection of genes in proximity to each other, subject or contributing
+     to a common transcription regulation, usually with a given function" []
+is_a: U23200 ! gene set
+is_a: U23400 ! positional feature set
+
+[Term]
+id: U23300
+name: protein set
+namespace: genome_content_unit_category
+def: "genes coding for a set of proteins" []
+is_a: U23000 ! feature set
+
+[Term]
+id: U23301
+name: protein complex
+namespace: genome_content_unit_type
+property_value: EGC_label protein_complex
+def: "genes coding for the components of a protein complex" []
+is_a: U23300 ! protein set
+
+[Term]
+id: U23101
+name: metabolic pathway group
+namespace: genome_content_unit_type
+property_value: EGC_label metabolic_pathway
+def: "a set of genes for enzymes which contribute to a given
+     metabolic pathway" []
+is_a: U23100 ! functions set
+
+[Term]
+id: U23400
+name: positional feature set
+namespace: genome_content_unit_category
+def: "a collection of features constisting of multiple components,
      each with an own structure or function,
      in a given arrangement or respecting given
-     proximity constraints []
-is_a: U0003 ! annotation_genomic_content_unit
+     proximity constraints" []
+is_a: U23000 ! feature set
 
 [Term]
-id: U0020
-name: gene_cluster
-name: protein_family_group
-def: a collection of genes in proximity to each other, with a given
-     function []
-is_a: U0019 ! feature_series
-
-[Term]
-id: U0021
-name: feature_arrangement
-def: a collection of features, defined by their relative position []
-is_a: U0019 ! feature_series
+id: U23401
+name: feature arrangement
+namespace: genome_content_unit_type
+property_value: EGC_label arrangement
+def: "a collection of features, defined by their relative position" []
+is_a: U23400 ! positional feature set
